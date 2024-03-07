@@ -1,0 +1,50 @@
+# github.com/likexian/doh-go v0.6.4
+## explicit; go 1.12
+github.com/likexian/doh-go
+github.com/likexian/doh-go/dns
+github.com/likexian/doh-go/provider/cloudflare
+github.com/likexian/doh-go/provider/dnspod
+github.com/likexian/doh-go/provider/google
+github.com/likexian/doh-go/provider/quad9
+# github.com/likexian/gokit v0.25.13
+## explicit; go 1.20
+github.com/likexian/gokit/assert
+github.com/likexian/gokit/xcache
+github.com/likexian/gokit/xcache/memory
+github.com/likexian/gokit/xfile
+github.com/likexian/gokit/xhash
+github.com/likexian/gokit/xhttp
+github.com/likexian/gokit/xip
+github.com/likexian/gokit/xjson
+github.com/likexian/gokit/xrand
+github.com/likexian/gokit/xstring
+github.com/likexian/gokit/xtime
+# github.com/mullvad/ipv6md v0.0.0-00010101000000-000000000000 => ./ipv6md
+## explicit; go 1.19
+github.com/mullvad/ipv6md
+github.com/mullvad/ipv6md/addrport
+github.com/mullvad/ipv6md/addrportxor
+github.com/mullvad/ipv6md/utils
+# github.com/mullvad/proxy v0.0.0-00010101000000-000000000000 => ./proxy
+## explicit; go 1.19
+github.com/mullvad/proxy
+github.com/mullvad/proxy/plain
+github.com/mullvad/proxy/typ
+github.com/mullvad/proxy/xor
+# golang.org/x/net v0.24.0
+## explicit; go 1.18
+golang.org/x/net/idna
+# golang.org/x/text v0.14.0
+## explicit; go 1.18
+golang.org/x/text/cases
+golang.org/x/text/internal
+golang.org/x/text/internal/language
+golang.org/x/text/internal/language/compact
+golang.org/x/text/internal/tag
+golang.org/x/text/language
+golang.org/x/text/secure/bidirule
+golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
+golang.org/x/text/unicode/norm
+# github.com/mullvad/ipv6md => ./ipv6md
+# github.com/mullvad/proxy => ./proxy
