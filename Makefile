@@ -16,7 +16,7 @@ install:
 
 .PHONY: clean
 clean:
-	rm -f ${BIN} ${BIN}*.zip ${BIN}*.asc
+	rm -f ${BIN} ${BIN}.exe ${BIN}*.zip ${BIN}*.asc
 
 .PHONY: fmt
 fmt:
@@ -54,6 +54,19 @@ release-darwin-arm64:
 release-linux-amd64:
 	$(MAKE) GOOS=linux GOARCH=amd64 build
 
+.PHONY: release-linux-arm64
+release-linux-arm64:
+	$(MAKE) GOOS=linux GOARCH=arm64 build
+
 .PHONY: release-windows-amd64
 release-windows-amd64:
 	$(MAKE) GOOS=windows GOARCH=amd64 EXT=.exe build
+
+.PHONY: release
+release: \
+	clean \
+	release-darwin-amd64 \
+	release-darwin-arm64 \
+	release-linux-amd64 \
+	release-linux-arm64 \
+	release-windows-amd64

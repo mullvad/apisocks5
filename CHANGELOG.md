@@ -19,6 +19,13 @@ Line wrap the file at 100 chars.                                              Th
 * **Fixed**: for any bug fixes.
 * **Security**: in case of vulnerabilities.
 
+## [1.0.1] - 2024-04-19
+### Added
+- Add build target for Linux ARM64.
+### Changed
+- Downgrade go v1.22.2 -> v1.21.3.
+
+
 ## [1.0.0] - 2024-04-18
 ### Added
 - Core functionality with some configurability.
