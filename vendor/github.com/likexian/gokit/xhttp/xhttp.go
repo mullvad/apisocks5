@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2023 Li Kexian
+ * Copyright 2012-2024 Li Kexian
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -423,7 +423,7 @@ func (r *Request) SetProxyURL(proxy string) *Request {
 		proxy = "http://" + proxy
 	}
 
-	r.SetProxy(func(req *http.Request) (*url.URL, error) {
+	r.SetProxy(func(_ *http.Request) (*url.URL, error) {
 		return url.ParseRequestURI(proxy)
 	})
 
@@ -435,7 +435,7 @@ func (r *Request) FollowRedirect(follow bool) *Request {
 	if follow {
 		r.Client.CheckRedirect = nil
 	} else {
-		r.Client.CheckRedirect = func(req *http.Request, via []*http.Request) error {
+		r.Client.CheckRedirect = func(_ *http.Request, _ []*http.Request) error {
 			return http.ErrUseLastResponse
 		}
 	}

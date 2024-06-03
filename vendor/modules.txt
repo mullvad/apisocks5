@@ -1,13 +1,13 @@
-# github.com/likexian/doh-go v0.6.4
-## explicit; go 1.12
+# github.com/likexian/doh-go v0.6.5
+## explicit; go 1.21
 github.com/likexian/doh-go
 github.com/likexian/doh-go/dns
 github.com/likexian/doh-go/provider/cloudflare
 github.com/likexian/doh-go/provider/dnspod
 github.com/likexian/doh-go/provider/google
 github.com/likexian/doh-go/provider/quad9
-# github.com/likexian/gokit v0.25.13
-## explicit; go 1.20
+# github.com/likexian/gokit v0.25.15
+## explicit; go 1.21
 github.com/likexian/gokit/assert
 github.com/likexian/gokit/xcache
 github.com/likexian/gokit/xcache/memory
@@ -31,10 +31,10 @@ github.com/mullvad/proxy
 github.com/mullvad/proxy/plain
 github.com/mullvad/proxy/typ
 github.com/mullvad/proxy/xor
-# golang.org/x/net v0.24.0
+# golang.org/x/net v0.25.0
 ## explicit; go 1.18
 golang.org/x/net/idna
-# golang.org/x/text v0.14.0
+# golang.org/x/text v0.15.0
 ## explicit; go 1.18
 golang.org/x/text/cases
 golang.org/x/text/internal
