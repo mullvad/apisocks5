@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Li Kexian
+ * Copyright 2019-2024 Li Kexian
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ var (
 
 // Version returns package version
 func Version() string {
-	return "0.2.4"
+	return "0.2.5"
 }
 
 // Author returns package author
@@ -76,7 +76,7 @@ func (c *Provider) String() string {
 
 // SetProvides set upstream provides type, dnspod does NOT supported
 func (c *Provider) SetProvides(p int) error {
-	c.provides = DefaultProvides
+	c.provides = p
 	return nil
 }
 

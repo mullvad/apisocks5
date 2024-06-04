@@ -19,9 +19,18 @@ Line wrap the file at 100 chars.                                              Th
 * **Fixed**: for any bug fixes.
 * **Security**: in case of vulnerabilities.
 
+
+## [Unreleased]
+### Changed
+- Upgrade to use Go v1.22.3
+### Security
+- Update third-party dependencies.
+
+
 ## [1.0.2] - 2024-06-03
 ### Added
 - Add build target for Windows ARM64.
+
 
 ## [1.0.1] - 2024-04-19
 ### Added
