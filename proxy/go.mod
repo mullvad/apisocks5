@@ -2,7 +2,7 @@ module github.com/mullvad/proxy
 
 replace github.com/mullvad/ipv6md => ../ipv6md
 
-go 1.19.0
+go 1.22.4
 
 require (
 	github.com/likexian/doh-go v0.6.4
