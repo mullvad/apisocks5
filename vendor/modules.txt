@@ -31,10 +31,10 @@ github.com/mullvad/proxy
 github.com/mullvad/proxy/plain
 github.com/mullvad/proxy/typ
 github.com/mullvad/proxy/xor
-# golang.org/x/net v0.25.0
+# golang.org/x/net v0.26.0
 ## explicit; go 1.18
 golang.org/x/net/idna
-# golang.org/x/text v0.15.0
+# golang.org/x/text v0.16.0
 ## explicit; go 1.18
 golang.org/x/text/cases
 golang.org/x/text/internal
