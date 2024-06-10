@@ -67,7 +67,7 @@ func handleSOCKS5Conn(conn net.Conn, proxies []proxy.Proxy, verbose bool) {
 
 	defer conn.Close()
 
-	if err = handleVersion(conn, connBuff); err != nil {
+	if err = handleVersion(connBuff); err != nil {
 		goto out
 	}
 
@@ -75,11 +75,11 @@ func handleSOCKS5Conn(conn net.Conn, proxies []proxy.Proxy, verbose bool) {
 		goto out
 	}
 
-	if err = handleHeader(conn, connBuff); err != nil {
+	if err = handleHeader(connBuff); err != nil {
 		goto out
 	}
 
-	if err = handleTargetAddress(conn, connBuff); err != nil {
+	if err = handleTargetAddress(connBuff); err != nil {
 		goto out
 	}
 
@@ -89,7 +89,7 @@ func handleSOCKS5Conn(conn net.Conn, proxies []proxy.Proxy, verbose bool) {
 	}
 	defer targetConn.Close()
 
-	if err = handleTargetConn(conn, connBuff, targetConn); err != nil {
+	if err = handleTargetConn(conn, targetConn); err != nil {
 		goto out
 	}
 
@@ -116,7 +116,7 @@ out:
 
 // handleVersion ensures that the first byte of the connection contains the
 // SOCKS5 version identifier.
-func handleVersion(conn io.Writer, connBuff *bufio.Reader) error {
+func handleVersion(connBuff *bufio.Reader) error {
 	version, err := connBuff.ReadByte()
 	if err != nil {
 		return err
@@ -148,7 +148,7 @@ func handleAuthentication(conn io.Writer, connBuff *bufio.Reader) error {
 }
 
 // handleHeader parses the three bytes that serves as the SOCKS5 header.
-func handleHeader(conn io.Writer, connBuff *bufio.Reader) error {
+func handleHeader(connBuff *bufio.Reader) error {
 	// The header contains three bytes.
 	// 00: version
 	// 01: command
@@ -172,7 +172,7 @@ func handleHeader(conn io.Writer, connBuff *bufio.Reader) error {
 // handleTargetAddress parses the target address from the SOCKS5 payload. In
 // our case we'll just discard this data since we will get the actual target
 // from another source.
-func handleTargetAddress(conn io.Writer, connBuff *bufio.Reader) error {
+func handleTargetAddress(connBuff *bufio.Reader) error {
 	typ, err := connBuff.ReadByte()
 	if err != nil {
 		return err
@@ -232,7 +232,7 @@ func newTargetConn(proxies []proxy.Proxy, verbose bool) (net.Conn, proxy.Proxy, 
 // handleTargetConn initializes a new TCP connection to the given targetAddress
 // and writes the source address back to the SOCKS5 client if everythings goes
 // according to plan.
-func handleTargetConn(conn io.Writer, connBuff *bufio.Reader, targetConn net.Conn) error {
+func handleTargetConn(conn io.Writer, targetConn net.Conn) error {
 	localAddr := targetConn.LocalAddr().(*net.TCPAddr)
 	localPort := make([]byte, 2)
 	binary.BigEndian.PutUint16(localPort, uint16(localAddr.Port))
