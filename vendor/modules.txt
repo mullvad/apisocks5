@@ -20,13 +20,13 @@ github.com/likexian/gokit/xrand
 github.com/likexian/gokit/xstring
 github.com/likexian/gokit/xtime
 # github.com/mullvad/ipv6md v0.0.0-00010101000000-000000000000 => ./ipv6md
-## explicit; go 1.19
+## explicit; go 1.22.4
 github.com/mullvad/ipv6md
 github.com/mullvad/ipv6md/addrport
 github.com/mullvad/ipv6md/addrportxor
 github.com/mullvad/ipv6md/utils
 # github.com/mullvad/proxy v0.0.0-00010101000000-000000000000 => ./proxy
-## explicit; go 1.19.0
+## explicit; go 1.22.4
 github.com/mullvad/proxy
 github.com/mullvad/proxy/plain
 github.com/mullvad/proxy/typ
