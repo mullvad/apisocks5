@@ -20,10 +20,12 @@ Line wrap the file at 100 chars.                                              Th
 * **Security**: in case of vulnerabilities.
 
 
-## [Unreleased]
+## [1.0.3] - 2024-06-18
 ### Changed
-- Upgrade to use Go v1.22.3
+- Upgrade to use Go v1.22.4
+- Create zip-artifacts deterministically.
 ### Security
+- Update vulnerable dependencies from stdlib.
 - Update third-party dependencies.
 
 
