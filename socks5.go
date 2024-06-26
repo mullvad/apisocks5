@@ -57,7 +57,7 @@ const (
 )
 
 // handleSOCKS5Conn ensures that the given TCP connection is actually a SOCKS5
-// connection and handles it accordignly if everything is OK.
+// connection and handles it accordingly if everything is OK.
 func handleSOCKS5Conn(conn net.Conn, proxies []proxy.Proxy, verbose bool) {
 	var err error
 	var wg sync.WaitGroup
@@ -100,10 +100,12 @@ func handleSOCKS5Conn(conn net.Conn, proxies []proxy.Proxy, verbose bool) {
 	wg.Add(2)
 	go func() {
 		prx.FromPeer(targetConn, conn)
+		targetConn.SetReadDeadline(time.Unix(1, 0))
 		wg.Done()
 	}()
 	go func() {
 		prx.ToPeer(conn, targetConn)
+		conn.SetReadDeadline(time.Unix(1, 0))
 		wg.Done()
 	}()
 	wg.Wait()
