@@ -1,6 +1,6 @@
 module github.com/mullvad/apisocks5
 
-go 1.22.4
+go 1.22.5
 
 replace github.com/mullvad/ipv6md => ./ipv6md
 
