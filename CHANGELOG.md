@@ -20,6 +20,13 @@ Line wrap the file at 100 chars.                                              Th
 * **Security**: in case of vulnerabilities.
 
 
+## Unreleased
+### Changed
+- Upgrade to use Go 1.22.5
+### Security
+- Update vulnerable dependencies from stdlib.
+
+
 ## [1.0.3] - 2024-06-18
 ### Changed
 - Upgrade to use Go v1.22.4
