@@ -20,9 +20,10 @@ Line wrap the file at 100 chars.                                              Th
 * **Security**: in case of vulnerabilities.
 
 
-## Unreleased
+## [1.0.4] - 2024-07-04
 ### Changed
 - Upgrade to use Go 1.22.5
+- Cancel forwarding swiftly if either side terminates the connection.
 ### Security
 - Update vulnerable dependencies from stdlib.
 
