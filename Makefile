@@ -26,16 +26,25 @@ fmt:
 
 .PHONY: vet
 vet:
-	go vet ./...
-	staticcheck ./...
+	golangci-lint run ./...
+
+.PHONY: vuln
+vuln:
+	govulncheck ./...
 
 .PHONY: test
 test:
-	go test -v -race ./...
+	go test -v ./...
+
+.PHONY: ci
+ci:
+	podman build --quiet --target test -t ${BIN}-tester .
+	podman run --rm -v .:/build:Z -w /build \
+		-it ${BIN}-tester make all vuln test vet
 
 .PHONY: build-container
 build-container:
-	podman build -t ${BIN} .
+	podman build --target build -t ${BIN} .
 
 .PHONY: build
 build: build-container

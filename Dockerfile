@@ -1,6 +1,6 @@
-FROM ubuntu:22.04
+FROM ubuntu:22.04 AS build
 
-ENV PATH="$PATH:/usr/local/go/bin"
+ENV PATH="$PATH:/usr/local/go/bin:/root/go/bin"
 
 # The SHA256 checksum used to verify the go archive can be found at https://go.dev/dl/
 
@@ -12,3 +12,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && curl -L https://go.dev/dl/${GO_FILENAME} >/tmp/${GO_FILENAME} \
   && echo ${GO_FILEHASH} /tmp/${GO_FILENAME} | sha256sum --check \
   && tar -C /usr/local -xzf /tmp/${GO_FILENAME}
+
+FROM build AS test
+
+RUN go install golang.org/x/vuln/cmd/govulncheck@latest \
+ && go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
