@@ -19,7 +19,7 @@ Line wrap the file at 100 chars.                                              Th
 * **Fixed**: for any bug fixes.
 * **Security**: in case of vulnerabilities.
 
-## Unreleased
+## [1.1.0] - 2024-09-05
 ### Added
 - Add XOR v2.
 
