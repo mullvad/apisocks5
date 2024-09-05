@@ -22,6 +22,7 @@ func main() {
 	version := flag.Bool("version", false, "display version and exit")
 	usePlainProxies := flag.Bool("use-plain-proxies", true, "use plain proxies")
 	useXORProxies := flag.Bool("use-xor-proxies", true, "use xor proxies")
+	useXORV2Proxies := flag.Bool("use-xor-v2-proxies", true, "use xor v2 proxies")
 	flag.Parse()
 
 	if *version {
@@ -33,8 +34,8 @@ func main() {
 		os.Exit(0)
 	}
 
-	if !*usePlainProxies && !*useXORProxies {
-		log.Fatalf("neither -use-plain-proxy or -use-xor-proxy was set")
+	if !*usePlainProxies && !*useXORProxies && !*useXORV2Proxies {
+		log.Fatalf("neither -use-plain-proxy, -use-xor-proxy or -use-xor-v2-proxies-was set")
 	}
 
 	if *sourceDomains == "" {
@@ -68,24 +69,33 @@ func main() {
 
 		var plainProxies []proxy.Proxy
 		var xorProxies []proxy.Proxy
+		var xorV2Proxies []proxy.Proxy
 		for _, p := range proxies {
 			if *usePlainProxies && p.Type() == typ.Plain {
 				plainProxies = append(plainProxies, p)
 			} else if *useXORProxies && p.Type() == typ.XOR {
 				xorProxies = append(xorProxies, p)
+			} else if *useXORV2Proxies && p.Type() == typ.XORV2 {
+				xorV2Proxies = append(xorV2Proxies, p)
 			}
 		}
-		if *usePlainProxies && len(plainProxies) == 0 && !*useXORProxies {
-			log.Printf("No plain proxies returned from the source domains\n")
-			continue
+
+		var allProxies []proxy.Proxy
+		if *useXORV2Proxies {
+			allProxies = append(allProxies, xorV2Proxies...)
 		}
-		if *useXORProxies && len(xorProxies) == 0 && !*usePlainProxies {
-			log.Printf("No XOR proxies returned from the source domains\n")
+		if *useXORProxies {
+			allProxies = append(allProxies, xorProxies...)
+		}
+		if *usePlainProxies {
+			allProxies = append(allProxies, plainProxies...)
+		}
+		if len(allProxies) == 0 {
+			log.Printf("No proxies returned from the source domains match your preferred selection\n")
 			continue
 		}
 
-		// Prefer XOR proxies before plain proxies
-		go handleSOCKS5Conn(conn, append(xorProxies, plainProxies...), *verbose)
+		go handleSOCKS5Conn(conn, allProxies, *verbose)
 	}
 }
 

@@ -7,16 +7,18 @@ import (
 )
 
 var (
-	ErrUnknownData = errors.New("unknown data")
-	ErrUnknownType = errors.New("unknown type")
+	ErrUnknownData    = errors.New("unknown data")
+	ErrUnknownType    = errors.New("unknown type")
+	ErrUnexpectedType = errors.New("unexpected type")
 )
 
 type Type uint16
 
 const (
-	Unknown     Type = 0x00
-	AddrPort    Type = 0x01
-	AddrPortXOR Type = 0x02
+	Unknown       Type = 0x00
+	AddrPort      Type = 0x01
+	AddrPortXOR   Type = 0x02
+	AddrPortXORV2 Type = 0x03
 )
 
 func (t Type) ToUint16() uint16 {
@@ -29,6 +31,8 @@ func (t Type) String() string {
 		return "AddrPort"
 	case AddrPortXOR:
 		return "AddrPortXOR"
+	case AddrPortXORV2:
+		return "AddrPortXORV2"
 	default:
 		return "Unknown"
 	}
@@ -51,6 +55,8 @@ func GetType(ip net.IP) (Type, error) {
 		return AddrPort, nil
 	case AddrPortXOR:
 		return AddrPortXOR, nil
+	case AddrPortXORV2:
+		return AddrPortXORV2, nil
 	}
 
 	return Unknown, ErrUnknownType

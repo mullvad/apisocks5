@@ -1,3 +1,15 @@
+// Encapsulate an address and port together
+//
+// Format description:
+//
+// Offsets      Description
+// -------      -----------
+// 00 - 02      Dummy header to make it look like a real IPv6 address
+// 02 - 04      Type (little endian)
+// 04 - 08      IPv4 address (big endian)
+// 08 - 10      Port number (little endian)
+// 10 - 16      Unused bytes
+
 package addrport
 
 import (
@@ -48,6 +60,11 @@ func Decode(ip net.IP) (netip.AddrPort, error) {
 	data := []byte(ip.To16())
 	if len(data) != 16 {
 		return addrPort, ErrAddrPortInvalidIPLen
+	}
+
+	typ := binary.LittleEndian.Uint16(data[2:4])
+	if ipv6md.Type(typ) != ipv6md.AddrPort {
+		return addrPort, ipv6md.ErrUnexpectedType
 	}
 
 	addr := utils.ToNetIPAddr(data[4:8])
