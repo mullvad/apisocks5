@@ -12,6 +12,7 @@ import (
 
 	"github.com/mullvad/proxy/plain"
 	"github.com/mullvad/proxy/xor"
+	"github.com/mullvad/proxy/xorv2"
 )
 
 func Query(domains []string, verbose bool) []Proxy {
@@ -72,6 +73,13 @@ func queryDomain(domain string) ([]Proxy, error) {
 			p, err := xor.New(ip)
 			if err != nil {
 				log.Printf("Unable to decode address and port with XOR, %v\n", err)
+				continue
+			}
+			proxies = append(proxies, p)
+		case ipv6md.AddrPortXORV2:
+			p, err := xorv2.New(ip)
+			if err != nil {
+				log.Printf("Unable to decode address and port with XOR v2, %v\n", err)
 				continue
 			}
 			proxies = append(proxies, p)

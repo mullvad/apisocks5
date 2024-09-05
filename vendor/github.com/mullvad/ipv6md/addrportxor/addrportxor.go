@@ -5,11 +5,11 @@
 // Offsets      Description
 // -------      -----------
 // 00 - 02      Dummy header to make it look like a real IPv6 address
-// 02 - 04      Type
-// 04 - 08      IPv4 address
-// 08 - 10      Port number
-// 10 - 12      Number of bytes to XOR; 0x0 means XOR everything
-// 12 - 16      Key, where 0x0 marks the end of the key
+// 02 - 04      Type (little endian)
+// 04 - 08      IPv4 address (big endian)
+// 08 - 10      Port number (little endian)
+// 10 - 12      Number of bytes to XOR; 0x00 means XOR everything
+// 12 - 16      Key, 0x00 bytes will be skipped
 
 package addrportxor
 
@@ -67,6 +67,11 @@ func Decode(ip net.IP) (*DecodedAddrPortXOR, error) {
 	data := []byte(ip.To16())
 	if len(data) != 16 {
 		return nil, addrport.ErrAddrPortInvalidIPLen
+	}
+
+	typ := binary.LittleEndian.Uint16(data[2:4])
+	if ipv6md.Type(typ) != ipv6md.AddrPortXOR {
+		return nil, ipv6md.ErrUnexpectedType
 	}
 
 	addr := utils.ToNetIPAddr(data[4:8])

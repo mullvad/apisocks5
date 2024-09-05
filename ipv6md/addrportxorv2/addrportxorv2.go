@@ -8,10 +8,9 @@
 // 02 - 04      Type (little endian)
 // 04 - 08      IPv4 address (big endian)
 // 08 - 10      Port number (little endian)
-// 10 - 12      Number of bytes to XOR; 0x00 means XOR everything
-// 12 - 16      Key, 0x00 bytes will be skipped
+// 10 - 16      Key, where the byte value 0x00 marks the end of the key
 
-package addrportxor
+package addrportxorv2
 
 import (
 	"encoding/binary"
@@ -29,18 +28,17 @@ var (
 	ErrInvalidKey       = errors.New("invalid key")
 )
 
-// DecodedAddrPortXOR is used by the Decode function to encapsulate the
-// returned values.
-type DecodedAddrPortXOR struct {
+// AddrPortXORV2 is used by the Decode function to encapsulate the returned
+// values.
+type AddrPortXORV2 struct {
 	AddrPort netip.AddrPort
-	XORBytes uint16
 	XORKey   []byte
 }
 
 // Encode encodes the given address, port and XOR encryption details in an IPv6
 // formatted slice of bytes.
-func Encode(addrPort string, xorBytes uint16, xorKey []byte) (net.IP, error) {
-	if len(xorKey) == 0 || len(xorKey) > 4 {
+func Encode(addrPort string, xorKey []byte) (net.IP, error) {
+	if len(xorKey) == 0 || len(xorKey) > 6 {
 		return nil, ErrInvalidKeyLength
 	}
 
@@ -49,17 +47,16 @@ func Encode(addrPort string, xorBytes uint16, xorKey []byte) (net.IP, error) {
 		return nil, err
 	}
 
-	binary.LittleEndian.PutUint16(data[2:4], ipv6md.AddrPortXOR.ToUint16())
-	binary.LittleEndian.PutUint16(data[10:12], xorBytes)
-	copy(data[12:16], xorKey)
+	binary.LittleEndian.PutUint16(data[2:4], ipv6md.AddrPortXORV2.ToUint16())
+	copy(data[10:16], xorKey)
 
 	return net.IP(data[:]), nil
 }
 
-// Decode assumes an IPv4 address and port, along with a 16-bit integer and a
-// 1-4 bytes long key, has been encoded within the IPv6 address. It returns a
-// netip.AddrPort with the information and the XOR bytes and key.
-func Decode(ip net.IP) (*DecodedAddrPortXOR, error) {
+// Decode assumes an IPv4 address and port and a 1-6 bytes long key, has been
+// encoded within the IPv6 address. It returns a netip.AddrPort with the
+// information.
+func Decode(ip net.IP) (*AddrPortXORV2, error) {
 	if ip == nil {
 		return nil, addrport.ErrAddrPortInvalidIP
 	}
@@ -70,7 +67,7 @@ func Decode(ip net.IP) (*DecodedAddrPortXOR, error) {
 	}
 
 	typ := binary.LittleEndian.Uint16(data[2:4])
-	if ipv6md.Type(typ) != ipv6md.AddrPortXOR {
+	if ipv6md.Type(typ) != ipv6md.AddrPortXORV2 {
 		return nil, ipv6md.ErrUnexpectedType
 	}
 
@@ -78,12 +75,10 @@ func Decode(ip net.IP) (*DecodedAddrPortXOR, error) {
 	port := binary.LittleEndian.Uint16(data[8:10])
 	ap := netip.AddrPortFrom(addr, port)
 
-	xorBytes := binary.LittleEndian.Uint16(data[10:12])
-
 	var xorKey []byte
-	for _, b := range data[12:16] {
+	for _, b := range data[10:16] {
 		if b == 0x00 {
-			continue
+			break
 		}
 
 		xorKey = append(xorKey, b)
@@ -92,9 +87,8 @@ func Decode(ip net.IP) (*DecodedAddrPortXOR, error) {
 		return nil, ErrInvalidKey
 	}
 
-	return &DecodedAddrPortXOR{
+	return &AddrPortXORV2{
 		AddrPort: ap,
-		XORBytes: xorBytes,
 		XORKey:   xorKey,
 	}, nil
 }
