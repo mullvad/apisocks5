@@ -9,9 +9,8 @@ import (
 )
 
 type xor struct {
-	addrPort     string
-	xorKey       []byte
-	xorKeyOffset int
+	addrPort string
+	xorKey   []byte
 }
 
 func New(ip net.IP) (*xor, error) {
@@ -33,6 +32,7 @@ func (x *xor) ToPeer(dst io.Writer, src io.Reader)   { x.forward(dst, src) }
 
 func (x *xor) forward(dst io.Writer, src io.Reader) {
 	buf := make([]byte, 1024*64)
+	offset := 0
 
 	for {
 		nr, err := src.Read(buf)
@@ -41,8 +41,8 @@ func (x *xor) forward(dst io.Writer, src io.Reader) {
 		}
 
 		for i := 0; i < nr; i++ {
-			buf[i] ^= x.xorKey[x.xorKeyOffset]
-			x.xorKeyOffset = (x.xorKeyOffset + 1) % len(x.xorKey)
+			buf[i] ^= x.xorKey[offset]
+			offset = (offset + 1) % len(x.xorKey)
 		}
 
 		nw, err := dst.Write(buf[0:nr])

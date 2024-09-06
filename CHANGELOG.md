@@ -19,9 +19,15 @@ Line wrap the file at 100 chars.                                              Th
 * **Fixed**: for any bug fixes.
 * **Security**: in case of vulnerabilities.
 
+## [1.1.1] - 2024-09-06
+### Fixed
+- Do not share the XOR key offset between the send and receive threads.
+
+
 ## [1.1.0] - 2024-09-05
 ### Added
 - Add XOR v2.
+
 
 ## [1.0.4] - 2024-07-04
 ### Changed
