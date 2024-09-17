@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mullvad/proxy"
+	"github.com/mullvad/apisocks5/internal/proxy"
 )
 
 var (

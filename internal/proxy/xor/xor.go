@@ -4,35 +4,35 @@ import (
 	"io"
 	"net"
 
-	"github.com/mullvad/ipv6md/addrportxor"
-	"github.com/mullvad/proxy/typ"
+	"github.com/mullvad/apisocks5/internal/ipv6md/addrportxor"
+	"github.com/mullvad/apisocks5/internal/proxy/typ"
 )
 
-type xor struct {
+type XOR struct {
 	addrPort string
 	xorBytes uint16
 	xorKey   []byte
 }
 
-func New(ip net.IP) (*xor, error) {
+func New(ip net.IP) (*XOR, error) {
 	target, err := addrportxor.Decode(ip)
 	if err != nil {
 		return nil, err
 	}
 
-	return &xor{
+	return &XOR{
 		addrPort: target.AddrPort.String(),
 		xorBytes: target.XORBytes,
 		xorKey:   target.XORKey,
 	}, nil
 }
 
-func (x *xor) Address() string                       { return x.addrPort }
-func (x *xor) Type() typ.Type                        { return typ.XOR }
-func (x *xor) FromPeer(dst io.Writer, src io.Reader) { x.forward(dst, src) }
-func (x *xor) ToPeer(dst io.Writer, src io.Reader)   { x.forward(dst, src) }
+func (x *XOR) Address() string                       { return x.addrPort }
+func (x *XOR) Type() typ.Type                        { return typ.XOR }
+func (x *XOR) FromPeer(dst io.Writer, src io.Reader) { x.forward(dst, src) }
+func (x *XOR) ToPeer(dst io.Writer, src io.Reader)   { x.forward(dst, src) }
 
-func (x *xor) forward(dst io.Writer, src io.Reader) {
+func (x *XOR) forward(dst io.Writer, src io.Reader) {
 	buf := make([]byte, 1024*64)
 
 	for {

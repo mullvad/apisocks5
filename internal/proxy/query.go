@@ -8,11 +8,11 @@ import (
 
 	"github.com/likexian/doh-go"
 	"github.com/likexian/doh-go/dns"
-	"github.com/mullvad/ipv6md"
+	"github.com/mullvad/apisocks5/internal/ipv6md"
 
-	"github.com/mullvad/proxy/plain"
-	"github.com/mullvad/proxy/xor"
-	"github.com/mullvad/proxy/xorv2"
+	"github.com/mullvad/apisocks5/internal/proxy/plain"
+	"github.com/mullvad/apisocks5/internal/proxy/xor"
+	"github.com/mullvad/apisocks5/internal/proxy/xorv2"
 )
 
 func Query(domains []string, verbose bool) []Proxy {
