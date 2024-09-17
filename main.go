@@ -9,8 +9,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/mullvad/proxy"
-	"github.com/mullvad/proxy/typ"
+	"github.com/mullvad/apisocks5/internal/proxy"
+	"github.com/mullvad/apisocks5/internal/proxy/typ"
 )
 
 var appVersion string

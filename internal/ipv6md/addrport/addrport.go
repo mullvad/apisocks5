@@ -18,8 +18,8 @@ import (
 	"net"
 	"net/netip"
 
-	"github.com/mullvad/ipv6md"
-	"github.com/mullvad/ipv6md/utils"
+	"github.com/mullvad/apisocks5/internal/ipv6md"
+	"github.com/mullvad/apisocks5/internal/ipv6md/utils"
 )
 
 var (

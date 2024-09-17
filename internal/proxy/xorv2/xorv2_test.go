@@ -2,9 +2,10 @@ package xorv2
 
 import (
 	"bytes"
+	"io"
 	"net"
-	"strings"
 	"testing"
+	"time"
 )
 
 // TestToPeer tests the ToPeer method of the xorv2 proxy. It specifically
@@ -16,13 +17,20 @@ func TestToPeer(t *testing.T) {
 		t.Errorf("unable to create new XOR proxy: %v", err)
 	}
 
-	var dst1 bytes.Buffer
-	xor.ToPeer(&dst1, strings.NewReader("foo bar baz"))
+	pr, pw := io.Pipe()
+	var dst bytes.Buffer
 
-	var dst2 bytes.Buffer
-	xor.ToPeer(&dst2, strings.NewReader("foo bar baz"))
+	go func() {
+		pw.Write([]byte("foo bar baz"))
+		time.Sleep(10 * time.Millisecond)
+		pw.Write([]byte("foo bar baz"))
+		pw.Close()
+	}()
 
-	if bytes.Equal(dst1.Bytes(), dst2.Bytes()) {
+	xor.ToPeer(&dst, pr)
+	data := dst.Bytes()
+
+	if bytes.Equal(data[:11], data[11:]) {
 		t.Errorf("XOR:ed data is equal")
 	}
 }

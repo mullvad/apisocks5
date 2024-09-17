@@ -3,7 +3,7 @@ package proxy
 import (
 	"io"
 
-	"github.com/mullvad/proxy/typ"
+	"github.com/mullvad/apisocks5/internal/proxy/typ"
 )
 
 type Proxy interface {
