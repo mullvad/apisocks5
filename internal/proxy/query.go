@@ -6,8 +6,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/likexian/doh-go"
-	"github.com/likexian/doh-go/dns"
+	"github.com/likexian/doh"
+	"github.com/likexian/doh/dns"
 	"github.com/mullvad/apisocks5/internal/ipv6md"
 
 	"github.com/mullvad/apisocks5/internal/proxy/plain"

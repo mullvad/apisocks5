@@ -1,10 +1,10 @@
 # doh.go
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-[![GoDoc](https://godoc.org/github.com/likexian/doh-go?status.svg)](https://godoc.org/github.com/likexian/doh-go)
-[![Build Status](https://travis-ci.org/likexian/doh-go.svg?branch=master)](https://travis-ci.org/likexian/doh-go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/likexian/doh-go)](https://goreportcard.com/report/github.com/likexian/doh-go)
-[![Code Cover](https://codecov.io/gh/likexian/doh-go/graph/badge.svg)](https://codecov.io/gh/likexian/doh-go)
+[![GoDoc](https://pkg.go.dev/badge/github.com/likexian/doh.svg)](https://pkg.go.dev/github.com/likexian/doh)
+[![Go Report Card](https://goreportcard.com/badge/github.com/likexian/doh)](https://goreportcard.com/report/github.com/likexian/doh)
+[![Build Status](https://github.com/likexian/doh/actions/workflows/gotest.yaml/badge.svg)](https://github.com/likexian/doh/actions/workflows/gotest.yaml)
+[![Code Cover](https://release.likexian.com/doh/coverage.svg)](https://github.com/likexian/doh/actions/workflows/gotest.yaml)
 
 doh-go is a DNS over HTTPS (DoH) Golang client implementation.
 
@@ -25,18 +25,18 @@ This module provides a easy way to using DoH as client in golang.
 
 ## Installation
 
-    go get -u github.com/likexian/doh-go
+    go get -u github.com/likexian/doh
 
 ## Importing
 
     import (
-        "github.com/likexian/doh-go"
-        "github.com/likexian/doh-go/dns"
+        "github.com/likexian/doh"
+        "github.com/likexian/doh/dns"
     )
 
 ## Documentation
 
-Visit the docs on [GoDoc](https://godoc.org/github.com/likexian/doh-go)
+Visit the docs on [GoDoc](https://godoc.org/github.com/likexian/doh)
 
 ## Example
 
@@ -114,11 +114,11 @@ Google Public DNS is a recursive DNS resolver, similar to other publicly availab
 
 - https://developers.google.com/speed/public-dns/docs/dns-over-https
 
-### DNSPod (Fake DoH)
+### DNSPod (Work well in Mainland China)
 
-DNS over HTTP but NOT HTTPS and A record only. This is something known as HTTPDNS, provided by DNSPod (Tencent Cloud). The backend is a anycast public DNS platform well known in China.
+The backend is a anycast public DNS platform well known in China.
 
-- https://cloud.tencent.com/document/product/379/3524
+- https://docs.dnspod.cn/public-dns/dot-doh/
 
 ## LICENSE
 

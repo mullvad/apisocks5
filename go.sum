@@ -1,8 +1,8 @@
-github.com/likexian/doh-go v0.6.5 h1:i/mCzd0eaRJcBjWJN9k4FgPcsUPsLJHfq5Hr9yxHGMo=
-github.com/likexian/doh-go v0.6.5/go.mod h1:I0F+jse/fBlZKLG08UD08ylrmllrFql/rSIi9GVwzDQ=
+github.com/likexian/doh v0.7.1 h1:0p75orMxXrfGNAOnOEtl2xZ5T9Ctqi++i/WhN6P6hs8=
+github.com/likexian/doh v0.7.1/go.mod h1:aIEOK197o6nC82iRo5+5L5ws+X7xRCmuer3M4In91WA=
 github.com/likexian/gokit v0.25.15 h1:QjospM1eXhdMMHwZRpMKKAHY/Wig9wgcREmLtf9NslY=
 github.com/likexian/gokit v0.25.15/go.mod h1:S2QisdsxLEHWeD/XI0QMVeggp+jbxYqUxMvSBil7MRg=
-golang.org/x/net v0.26.0 h1:soB7SVo0PWrY4vPW/+ay0jKDNScG2X9wFeYlXIvJsOQ=
-golang.org/x/net v0.26.0/go.mod h1:5YKkiSynbBIh3p6iOc/vibscux0x38BZDkn8sCUPxHE=
-golang.org/x/text v0.16.0 h1:a94ExnEXNtEwYLGJSIUxnWoxoRz/ZcCsV63ROupILh4=
-golang.org/x/text v0.16.0/go.mod h1:GhwF1Be+LQoKShO3cGOHzqOgRrGaYc9AvblQOmPVHnI=
+golang.org/x/net v0.34.0 h1:Mb7Mrk043xzHgnRM88suvJFwzVrRfHEHJEl5/71CKw0=
+golang.org/x/net v0.34.0/go.mod h1:di0qlW3YNM5oh6GqDGQr92MyTozJPmybPK4Ev/Gm31k=
+golang.org/x/text v0.21.0 h1:zyQAAkrwaneQ066sspRyJaG9VNi/YJ1NfzcGB3hZ/qo=
+golang.org/x/text v0.21.0/go.mod h1:4IBbMaMmOPCJ8SecivzSH54+73PCFmPWxNTLm+vZkEQ=
