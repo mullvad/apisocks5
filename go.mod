@@ -1,6 +1,6 @@
 module github.com/mullvad/apisocks5
 
-go 1.22.5
+go 1.23.5
 
 require (
 	github.com/likexian/doh-go v0.6.5 // indirect
