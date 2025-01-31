@@ -12,6 +12,12 @@ all: ${BIN}
 ${BIN}:
 	go build -a -trimpath -buildvcs=false -ldflags "${GO_LDFLAGS}" -o ${BIN} .
 
+.PHONY: upgrade
+upgrade:
+	go get -u
+	go mod tidy
+	go mod vendor
+
 .PHONY: install
 install:
 	go install
