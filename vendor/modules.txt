@@ -1,28 +1,22 @@
-# github.com/likexian/doh-go v0.6.5
+# github.com/likexian/doh v0.7.1
 ## explicit; go 1.21
-github.com/likexian/doh-go
-github.com/likexian/doh-go/dns
-github.com/likexian/doh-go/provider/cloudflare
-github.com/likexian/doh-go/provider/dnspod
-github.com/likexian/doh-go/provider/google
-github.com/likexian/doh-go/provider/quad9
+github.com/likexian/doh
+github.com/likexian/doh/dns
+github.com/likexian/doh/provider/cloudflare
+github.com/likexian/doh/provider/dnspod
+github.com/likexian/doh/provider/google
+github.com/likexian/doh/provider/quad9
 # github.com/likexian/gokit v0.25.15
 ## explicit; go 1.21
-github.com/likexian/gokit/assert
 github.com/likexian/gokit/xcache
 github.com/likexian/gokit/xcache/memory
-github.com/likexian/gokit/xfile
 github.com/likexian/gokit/xhash
-github.com/likexian/gokit/xhttp
 github.com/likexian/gokit/xip
-github.com/likexian/gokit/xjson
-github.com/likexian/gokit/xrand
 github.com/likexian/gokit/xstring
-github.com/likexian/gokit/xtime
-# golang.org/x/net v0.26.0
+# golang.org/x/net v0.34.0
 ## explicit; go 1.18
 golang.org/x/net/idna
-# golang.org/x/text v0.16.0
+# golang.org/x/text v0.21.0
 ## explicit; go 1.18
 golang.org/x/text/cases
 golang.org/x/text/internal

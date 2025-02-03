@@ -19,6 +19,14 @@ Line wrap the file at 100 chars.                                              Th
 * **Fixed**: for any bug fixes.
 * **Security**: in case of vulnerabilities.
 
+
+## [UNRELEASED]
+### Changed
+- Use Go 1.23.5
+### Security
+- Update third-party dependencies.
+
+
 ## [1.1.1] - 2024-09-06
 ### Fixed
 - Do not share the XOR key offset between the send and receive threads.
