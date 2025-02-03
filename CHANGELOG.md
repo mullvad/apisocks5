@@ -20,7 +20,7 @@ Line wrap the file at 100 chars.                                              Th
 * **Security**: in case of vulnerabilities.
 
 
-## [UNRELEASED]
+## [1.1.2] - 2025-02-03
 ### Changed
 - Use Go 1.23.5
 ### Security
